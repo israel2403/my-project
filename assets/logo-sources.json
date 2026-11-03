@@ -1,0 +1,106 @@
+{
+  "reactnative": {
+    "url": "https://raw.githubusercontent.com/facebook/react-native-website/main/website/static/img/header_logo.svg",
+    "file": "reactnative.svg"
+  },
+  "nestjs": {
+    "url": "https://raw.githubusercontent.com/nestjs/docs.nestjs.com/master/src/assets/logo-small.svg",
+    "file": "nestjs.svg"
+  },
+  "minio": {
+    "url": "https://raw.githubusercontent.com/minio/minio/master/.github/logo.svg",
+    "file": "minio.svg"
+  },
+  "huggingface": {
+    "url": "https://huggingface.co/front/assets/huggingface_logo-noborder.svg",
+    "file": "huggingface.svg"
+  },
+  "dotnet": {
+    "url": "https://raw.githubusercontent.com/dotnet/brand/main/logo/dotnet-logo.svg",
+    "file": "dotnet.svg"
+  },
+  "django": {
+    "url": "https://static.djangoproject.com/img/logos/django-logo-positive.svg",
+    "file": "django.svg"
+  },
+  "firebase": {
+    "url": "https://firebase.google.com/static/downloads/brand-guidelines/SVG/logo-standard.svg",
+    "file": "firebase.svg"
+  },
+  "kaggle": {
+    "url": "https://www.kaggle.com/static/images/site-logo.svg",
+    "file": "kaggle.svg"
+  },
+  "flutter": {
+    "url": "https://docs.flutter.dev/assets/images/branding/flutter/logo/default.svg",
+    "file": "flutter.svg"
+  },
+  "mongodb": {
+    "url": "https://images.contentstack.io/v3/assets/blt7151619cb9560896/bltac81c4aa3529ee37/65fd965e8f4444482dc3a079/la1a2b2h67gwwqnvs-mdb-logos.svg",
+    "file": "mongodb.svg",
+    "note": "Upper-right approved logo treatment from the official brand sheet; no recoloring."
+  },
+  "amazons3": {
+    "url": "https://d1.awsstatic.com/onedam/marketing-channels/website/public/shared/architecture-icon-release/Icon-package_07312026.5846e92413caa21490223536cc97f1269e44fa92.zip",
+    "archive_member": "Architecture-Service-Icons_07312026/Arch_Storage/64/Arch_Amazon-Simple-Storage-Service_64.svg",
+    "file": "amazons3.svg"
+  },
+  "postgresql": {
+    "url": "https://www.postgresql.org/media/img/about/press/elephant.png",
+    "file": "postgresql.png"
+  },
+  "kotlin": {
+    "url": "https://resources.jetbrains.com/storage/products/kotlin/docs/kotlin_logos.zip",
+    "archive_member": "Kotlin Ecosystem Logos/Kotlin Multiplatform/Primary/Dark/Kotlin Multiplatform Logo.svg",
+    "file": "kotlin.svg"
+  },
+  "springboot": {
+    "url": "https://spring.io/img/projects/spring-boot.svg",
+    "file": "springboot.svg"
+  },
+  "dart": {
+    "url": "https://raw.githubusercontent.com/devicons/devicon/master/icons/dart/dart-original.svg",
+    "file": "dart.svg",
+    "rendered_file": "dart.png",
+    "collection": "Devicon"
+  },
+  "javascript": {
+    "url": "https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg",
+    "file": "javascript.svg",
+    "rendered_file": "javascript.png",
+    "collection": "Devicon"
+  },
+  "csharp": {
+    "url": "https://raw.githubusercontent.com/devicons/devicon/master/icons/csharp/csharp-original.svg",
+    "file": "csharp.svg",
+    "rendered_file": "csharp.png",
+    "collection": "Devicon"
+  },
+  "java": {
+    "url": "https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg",
+    "file": "java.svg",
+    "rendered_file": "java.png",
+    "collection": "Devicon"
+  },
+  "typescript": {
+    "url": "https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-original.svg",
+    "file": "typescript.svg",
+    "rendered_file": "typescript.png",
+    "collection": "Devicon"
+  },
+  "python": {
+    "url": "https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg",
+    "file": "python.svg",
+    "rendered_file": "python.png",
+    "collection": "Devicon"
+  },
+  "spacy": {
+    "url": "https://raw.githubusercontent.com/explosion/spaCy/master/website/src/images/logo.svg",
+    "file": "spacy.svg",
+    "rendered_file": "spacy.png"
+  },
+  "vosk": {
+    "url": "https://alphacephei.com/img/vosk.png",
+    "file": "vosk.png"
+  }
+}

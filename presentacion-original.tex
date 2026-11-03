@@ -1,0 +1,185 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{lmodern}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,shadows.blur,fit,calc,shapes.geometric}
+\usepackage{booktabs,array,tabularx,multicol}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\definecolor{NahuaGreen}{HTML}{177A64}
+\definecolor{NahuaDark}{HTML}{123F39}
+\definecolor{NahuaMint}{HTML}{E8F4EF}
+\definecolor{NahuaGray}{HTML}{5C6A68}
+\definecolor{NahuaLight}{HTML}{F7FAF9}
+\setbeamercolor{normal text}{fg=NahuaDark,bg=white}
+\setbeamercolor{frametitle}{fg=NahuaDark}
+\setbeamercolor{structure}{fg=NahuaGreen}
+\setbeamercolor{block title}{bg=NahuaGreen,fg=white}
+\setbeamercolor{block body}{bg=NahuaMint,fg=NahuaDark}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}{\hfill\scriptsize\color{NahuaGray}Seminario I\quad\insertframenumber/\inserttotalframenumber\hspace{.45cm}\vspace{.22cm}}
+\setbeamertemplate{frametitle}{\vspace{.18cm}\insertframetitle\par\vspace{.08cm}{\color{NahuaGreen}\rule{\linewidth}{.75pt}}}
+\setbeamertemplate{itemize item}{\color{NahuaGreen}$\blacktriangleright$}
+\newcommand{\source}[1]{\vfill{\tiny\color{NahuaGray}Fuente: #1}}
+\newcommand{\tech}[3]{\begin{tikzpicture}[baseline=(n.base)]\node[rounded corners=3pt,fill=NahuaMint,draw=NahuaGreen!30,inner xsep=6pt,inner ysep=5pt] (n) {\begin{minipage}{#1}\centering\bfseries\color{NahuaDark}#2\\[-1pt]{\tiny\normalfont\color{NahuaGray}#3}\end{minipage}};\end{tikzpicture}}
+\newcommand{\brandlogo}[3]{\IfFileExists{assets/#1.pdf}{\includegraphics[height=#3,keepaspectratio]{assets/#1.pdf}}{\IfFileExists{assets/#1.png}{\includegraphics[height=#3,keepaspectratio]{assets/#1.png}}{\tech{2.05cm}{#2}{marca / nombre}}}}
+\tikzset{nodebox/.style={draw=NahuaGreen!38,fill=white,rounded corners=5pt,minimum height=1.0cm,align=center,blur shadow={shadow blur steps=5,shadow opacity=.12}},arr/.style={-{Latex[length=2.5mm]},thick,draw=NahuaGreen}}
+\title{Desarrollo de una plataforma computacional para la construcción y enriquecimiento de un corpus paralelo náhuatl--español con análisis morfológico orientado al apoyo de sistemas de traducción automática}
+\author{Estudiante: [Nombre completo]\\Director: Dr. Giner Alor Hernández\\Codirector: [Confirmar, si aplica]}
+\institute{Maestría en Sistemas Computacionales\\Instituto Tecnológico de Orizaba}
+\date{Seminario I · [Fecha de exposición]}
+\begin{document}
+\begin{frame}[plain]
+\begin{tikzpicture}[remember picture,overlay]\fill[NahuaLight] (current page.south west) rectangle (current page.north east);\fill[NahuaGreen] (current page.north west) rectangle ++(.16,-9);\fill[NahuaMint] ([xshift=-2cm,yshift=-1cm]current page.north east) circle (2.8cm);\draw[NahuaGreen!20,line width=2pt] ([xshift=-1.5cm,yshift=-1cm]current page.north east) circle (2.1cm);\end{tikzpicture}
+\vspace{.8cm}{\small\color{NahuaGreen}\bfseries SEMINARIO I}\vspace{.35cm}
+{\Large\bfseries\color{NahuaDark}Plataforma para la construcción y enriquecimiento de un corpus paralelo náhuatl--español}\par\vspace{.28cm}
+{\normalsize con análisis morfológico orientado al apoyo de sistemas de traducción automática}\vspace{.65cm}
+{\small [Nombre del estudiante]\\Director: Dr. Giner Alor Hernández\\Instituto Tecnológico de Orizaba}\vfill{\scriptsize\color{NahuaGray}[Fecha de exposición]}
+\end{frame}
+\begin{frame}{Jurado de evaluación}
+\begin{block}{Integrantes}\vspace{.1cm}
+\begin{itemize}\item Presidente: [Confirmar]\item Secretario: [Confirmar]\item Vocal: [Confirmar]\item Vocal suplente: [Confirmar]\end{itemize}
+\end{block}
+\small Los cargos deben completarse con el acta o la convocatoria vigente; no se deducen de presentaciones anteriores.
+\end{frame}
+\begin{frame}{Agenda}
+\begin{columns}[T]\column{.5\linewidth}\begin{enumerate}\item Objetivo de la presentación\item Planteamiento del problema\item Objetivos de investigación\item Arquitectura propuesta\item Análisis de tecnologías\end{enumerate}
+\column{.5\linewidth}\begin{enumerate}\setcounter{enumi}{5}\item Alternativas de solución\item Solución propuesta\item Cronograma de actividades\item Conclusiones y compromisos\item Referencias\end{enumerate}\end{columns}
+\end{frame}
+\begin{frame}{Objetivo de la presentación}
+\begin{block}{Propósito}Exponer el planteamiento y los objetivos del proyecto, la arquitectura preliminar y el análisis comparativo de las tecnologías consideradas para construir y enriquecer un corpus paralelo náhuatl--español.\end{block}
+\end{frame}
+\begin{frame}{Planteamiento del problema}
+\begin{columns}[T]\column{.55\linewidth}\begin{itemize}\item La construcción de recursos lingüísticos alineados requiere procesos de captura, organización y validación.\item Las grabaciones, transcripciones, traducciones y anotaciones deben mantenerse relacionadas.\item El trabajo colaborativo exige trazabilidad de cambios y revisión lingüística.\end{itemize}
+\column{.43\linewidth}\begin{tikzpicture}[scale=.78,transform shape]\node[nodebox,minimum width=3.4cm] (a) {Audio en náhuatl};\node[nodebox,below=9mm of a,minimum width=3.4cm] (b) {Transcripción y traducción};\node[nodebox,below=9mm of b,minimum width=3.4cm] (c) {Validación y metadatos};\draw[arr] (a)--(b);\draw[arr] (b)--(c);\end{tikzpicture}\end{columns}
+\source{Planteamiento del proyecto proporcionado; sin cifras no verificadas.}
+\end{frame}
+\begin{frame}{Objetivo general}
+\begin{block}{Objetivo}Desarrollar una plataforma computacional para la construcción y enriquecimiento de un corpus paralelo náhuatl--español, con análisis morfológico y validación lingüística, orientado al apoyo de futuros sistemas de traducción automática.\end{block}
+\small\color{NahuaGray}Redacción de trabajo: contrastar con la versión aprobada del protocolo de tesis.
+\end{frame}
+\begin{frame}{Objetivos específicos}
+\begin{enumerate}\item Analizar antecedentes, herramientas y requerimientos para la construcción del corpus.\item Diseñar la arquitectura, el modelo de información y los flujos de captura y validación.\item Desarrollar los componentes de la plataforma.\item Construir y enriquecer el corpus mediante registros y anotaciones verificables.\item Evaluar el funcionamiento de la plataforma con criterios definidos.\end{enumerate}
+\source{Síntesis de los cinco verbos de objetivos comunicados previamente; revisar formulación oficial.}
+\end{frame}
+\begin{frame}{Arquitectura propuesta}
+\centering\begin{tikzpicture}[scale=.84,transform shape,node distance=10mm and 12mm]
+\node[nodebox,minimum width=3.0cm,minimum height=1.4cm,fill=NahuaMint] (mobile) {\textbf{Aplicación móvil}\\Kotlin Multiplatform\\captura / offline};
+\node[nodebox,right=17mm of mobile,minimum width=3.0cm,minimum height=1.4cm] (api) {\textbf{API y servicios}\\Spring Boot\\sincronización / validación};
+\node[nodebox,right=17mm of api,minimum width=2.6cm] (db) {\textbf{Metadatos}\\MongoDB};
+\node[nodebox,below=13mm of db,minimum width=2.6cm] (obj) {\textbf{Audios}\\MinIO};
+\node[nodebox,below=13mm of api,minimum width=3cm,fill=NahuaMint] (nlp) {\textbf{PLN opcional}\\Transformers\\tarea por definir};
+\node[nodebox,below=13mm of mobile,minimum width=3cm] (pub) {\textbf{Publicación}\\Kaggle (sujeto a permisos)};
+\draw[arr,<->] (mobile)--node[above,font=\tiny]{HTTPS / API}(api);\draw[arr,<->] (api)--(db);\draw[arr,<->] (api)--(obj);\draw[arr,dashed] (api)--(nlp);\draw[arr,dashed] (api.south west)--(pub.north east);
+\end{tikzpicture}
+\source{Arquitectura conceptual: no implica que todos los componentes estén implementados.}
+\end{frame}
+\begin{frame}{Análisis de tecnologías (1/5): desarrollo móvil}
+\centering\begin{tabular}{cc}\brandlogo{kotlin}{Kotlin Multiplatform}{1cm}&\brandlogo{flutter}{Flutter}{1cm}\\[7mm]\brandlogo{reactnative}{React Native}{1cm}&\brandlogo{dotnet}{.NET MAUI}{1cm}\end{tabular}\vspace{.3cm}
+\begin{block}{Criterios de comparación}\small Android e iOS; reutilización de lógica e interfaz; grabación de audio; persistencia local; sincronización y mantenimiento.\end{block}
+\end{frame}
+\begin{frame}{Análisis de tecnologías (2/5): servicios backend}
+\centering\begin{tabular}{cc}\brandlogo{springboot}{Spring Boot}{.9cm}&\brandlogo{nestjs}{NestJS}{.9cm}\\[7mm]\brandlogo{django}{Django}{.9cm}&\brandlogo{dotnet}{ASP.NET Core}{.9cm}\end{tabular}\vspace{.35cm}
+\begin{block}{Criterios de comparación}\small Desarrollo de API, autenticación, integración de servicios, pruebas, despliegue y mantenibilidad.\end{block}
+\end{frame}
+\begin{frame}{Análisis de tecnologías (3/5): persistencia y audio}
+\begin{columns}[T]\column{.49\linewidth}\centering\textbf{Base de datos}\\[3mm]\brandlogo{mongodb}{MongoDB}{.85cm}\\[5mm]\brandlogo{postgresql}{PostgreSQL}{.85cm}
+\column{.49\linewidth}\centering\textbf{Almacenamiento de objetos}\\[3mm]\brandlogo{minio}{MinIO}{.85cm}\\[5mm]\brandlogo{amazons3}{Amazon S3}{.85cm}\\[5mm]\brandlogo{firebase}{Firebase Storage}{.85cm}\end{columns}
+\vspace{.2cm}\small\color{NahuaGray}Evaluar flexibilidad del esquema, integridad, auditoría, costos y control de acceso. La elección de base de datos no depende necesariamente del framework móvil.
+\end{frame}
+\begin{frame}{Análisis de tecnologías (4/5): audio y PLN}
+\begin{tabularx}{\linewidth}{>{\bfseries}p{3.2cm}X}\toprule Tecnología & Alcance que debe verificarse\\\midrule
+Hugging Face Transformers & Biblioteca para utilizar modelos de aprendizaje automático; requiere definir modelo y tarea.\\
+Whisper & Familia de modelos de reconocimiento de voz; desempeño en la variante por validar.\\
+Vosk & Herramientas de reconocimiento de voz sin conexión; cobertura lingüística por verificar.\\
+spaCy & Biblioteca de procesamiento lingüístico; no es equivalente a un motor ASR.\\\bottomrule\end{tabularx}
+\vspace{.25cm}\small\color{NahuaGray}No son sustitutos directos: comparar por función, soporte lingüístico y evidencia de pruebas.
+\end{frame}
+\begin{frame}{Análisis de tecnologías (5/5): datasets y gestión}
+\begin{columns}[T]\column{.52\linewidth}\textbf{Repositorios / catálogos}\begin{itemize}\item Kaggle\item Papers with Code\item UCI Machine Learning Repository\end{itemize}\small Evaluar publicación, versionado, metadatos, licencias y acceso.
+\column{.45\linewidth}\textbf{Metodologías}\begin{itemize}\item Scrum\item Mobile-D\item Kanban\item Extreme Programming\end{itemize}\small Comparar por separado de la pila técnica.
+\end{columns}
+\end{frame}
+\begin{frame}{Alternativas de solución (1/2)}
+\scriptsize\renewcommand{\arraystretch}{1.25}\begin{tabularx}{\linewidth}{>{\bfseries}p{2.5cm}XXXX}\toprule Componente & Pila 1 & Pila 2 & Pila 3 & Pila 4\\\midrule
+Móvil & KMP & Flutter & React Native & .NET MAUI\\
+Backend & Spring Boot & NestJS & Django & ASP.NET Core\\
+BD & MongoDB & PostgreSQL & PostgreSQL & PostgreSQL\\
+Audio & MinIO & Firebase Storage & Amazon S3 & MinIO\\
+Lenguaje móvil & Kotlin & Dart* & TypeScript & C\#*\\\bottomrule\end{tabularx}
+\vspace{.3cm}\small *Correcciones técnicas respecto de la tabla original: Flutter se desarrolla principalmente con Dart y .NET MAUI con C\#.
+\end{frame}
+\begin{frame}{Alternativas de solución (2/2)}
+\scriptsize\renewcommand{\arraystretch}{1.25}\begin{tabularx}{\linewidth}{>{\bfseries}p{2.55cm}XXXX}\toprule Componente & Pila 1 & Pila 2 & Pila 3 & Pila 4\\\midrule
+Audio / PLN & Transformers & Whisper & spaCy & Vosk\\
+Datasets & Kaggle & Kaggle & Papers with Code & UCI\\
+Gestión & Scrum & Mobile-D & Kanban & XP\\\bottomrule\end{tabularx}
+\vspace{.4cm}\begin{block}{Precaución metodológica}\small Estas filas documentan las alternativas de la Tabla 3.1, pero no todas son directamente comparables. El análisis definitivo debe evaluar cada componente según su función.\end{block}
+\end{frame}
+\begin{frame}{Criterios para seleccionar la solución}
+\begin{columns}[T]\column{.52\linewidth}\begin{itemize}\item Android e iOS\item Captura de audio y uso offline\item Sincronización y validación\item Trazabilidad de anotaciones\end{itemize}
+\column{.46\linewidth}\begin{itemize}\item Seguridad y permisos\item Reproducibilidad del corpus\item Mantenibilidad\item Costos y despliegue\end{itemize}\end{columns}
+\vspace{.4cm}\begin{block}{Estado de la evaluación}\small Los criterios se proponen para documentar la selección; no se asignan puntuaciones sin pruebas o fuentes comparables.\end{block}
+\end{frame}
+\begin{frame}{Solución propuesta}
+\centering\begin{tikzpicture}[node distance=7mm and 7mm,scale=.93,transform shape]
+\node[nodebox,minimum width=3.25cm,fill=NahuaMint] (m) {\brandlogo{kotlin}{Kotlin Multiplatform}{.7cm}\\\scriptsize Aplicación móvil};
+\node[nodebox,right=of m,minimum width=3.25cm,fill=NahuaMint] (s) {\brandlogo{springboot}{Spring Boot}{.7cm}\\\scriptsize Servicios backend};
+\node[nodebox,right=of s,minimum width=3.25cm,fill=NahuaMint] (d) {\brandlogo{mongodb}{MongoDB}{.7cm}\\\scriptsize Metadatos};
+\node[nodebox,below=of m,minimum width=3.25cm] (a) {\brandlogo{minio}{MinIO}{.7cm}\\\scriptsize Objetos de audio};
+\node[nodebox,right=of a,minimum width=3.25cm] (h) {\brandlogo{huggingface}{Transformers}{.7cm}\\\scriptsize PLN por delimitar};
+\node[nodebox,right=of h,minimum width=3.25cm] (k) {\brandlogo{kaggle}{Kaggle}{.7cm}\\\scriptsize Publicación condicionada};
+\end{tikzpicture}
+\vspace{.2cm}\small\color{NahuaGray}Lenguaje móvil: Kotlin · Gestión del proyecto: Scrum adaptado.
+\end{frame}
+\begin{frame}{Justificación de la solución propuesta}
+\begin{tabularx}{\linewidth}{>{\bfseries}p{3.0cm}X}\toprule Elección & Relación con los requisitos\\\midrule
+Kotlin Multiplatform & Compartir lógica para Android e iOS y facilitar mantenimiento.\\
+Spring Boot & Organizar API, validaciones e integración de servicios.\\
+MongoDB & Modelar metadatos de estructura variable; evaluar integridad y consultas.\\
+MinIO & Separar archivos de audio del almacenamiento de metadatos.\\
+Transformers & Explorar tareas de PLN concretas, sujetas a evidencia de compatibilidad.\\
+Kaggle & Considerar distribución de datasets con restricciones y licencias.\\\bottomrule\end{tabularx}
+\end{frame}
+\begin{frame}{Flujo de construcción del corpus}
+\centering\begin{tikzpicture}[node distance=4mm,scale=.86,transform shape]
+\node[nodebox,minimum width=2.2cm] (a) {\textbf{1. Captura}\\\scriptsize audio / metadatos};
+\node[nodebox,right=of a,minimum width=2.2cm] (b) {\textbf{2. Sincronización}\\\scriptsize offline / online};
+\node[nodebox,right=of b,minimum width=2.2cm] (c) {\textbf{3. Anotación}\\\scriptsize texto / traducción};
+\node[nodebox,right=of c,minimum width=2.2cm] (d) {\textbf{4. Validación}\\\scriptsize revisión lingüística};
+\node[nodebox,below=13mm of c,minimum width=3.0cm,fill=NahuaMint] (e) {\textbf{5. Corpus versionado}\\\scriptsize exportación autorizada};
+\draw[arr] (a)--(b);\draw[arr] (b)--(c);\draw[arr] (c)--(d);\draw[arr] (d.south)|-(e.east);
+\end{tikzpicture}
+\vspace{.55cm}\small\color{NahuaGray}Las tareas exactas de análisis morfológico y su validación deben especificarse en el protocolo.
+\end{frame}
+\begin{frame}{Cronograma de actividades (1/2)}
+\begin{tabularx}{\linewidth}{>{\bfseries}p{1.3cm}X>{\raggedright\arraybackslash}p{3.3cm}}\toprule Etapa & Actividades & Evidencia esperada\\\midrule
+1 & Revisión de literatura y requisitos & Estado del arte / requisitos\\
+2 & Arquitectura y modelo de datos & Diagramas / contratos\\
+3 & Implementación móvil y backend & Incrementos verificables\\
+4 & Captura y gestión del corpus & Registros y metadatos\\\bottomrule\end{tabularx}
+\vspace{.3cm}\small\color{NahuaGray}Secuencia propuesta sin fechas asignadas; completar según cronograma aprobado.
+\end{frame}
+\begin{frame}{Cronograma de actividades (2/2)}
+\begin{tabularx}{\linewidth}{>{\bfseries}p{1.3cm}X>{\raggedright\arraybackslash}p{3.3cm}}\toprule Etapa & Actividades & Evidencia esperada\\\midrule
+5 & Validación lingüística y auditoría & Historial de revisiones\\
+6 & Evaluación funcional y técnica & Casos de prueba / resultados\\
+7 & Documentación y cierre & Tesis / anexos / entregables\\\bottomrule\end{tabularx}
+\vspace{.4cm}\begin{block}{Seguimiento}\small Asociar cada etapa con hitos, fechas y entregables del plan institucional vigente.\end{block}
+\end{frame}
+\begin{frame}{Conclusiones preliminares}
+\begin{itemize}\item La plataforma requiere integrar captura móvil, persistencia, almacenamiento de audio y validación lingüística.\item La pila seleccionada es técnicamente plausible, pero la elección debe respaldarse con criterios verificables.\item Las herramientas de PLN no deben presentarse como equivalentes ni como soluciones ya validadas para náhuatl.\item La evaluación deberá distinguir el funcionamiento de la plataforma de la calidad del corpus generado.\end{itemize}
+\end{frame}
+\begin{frame}{Compromisos a futuro}
+\begin{itemize}\item Completar la matriz de evaluación tecnológica con fuentes y pruebas de concepto.\item Precisar el alcance del análisis morfológico.\item Definir el esquema de metadatos, auditoría y permisos de publicación.\item Validar los flujos de captura, sincronización y revisión con participantes autorizados.\item Ajustar el cronograma conforme a las observaciones del comité.\end{itemize}
+\end{frame}
+\begin{frame}{Referencias técnicas (1/2)}
+\footnotesize\begin{thebibliography}{9}\bibitem{kmp} JetBrains, ``Kotlin Multiplatform,'' documentación oficial. \url{https://kotlinlang.org/docs/multiplatform.html}\bibitem{compose} JetBrains, ``Compose Multiplatform,'' documentación oficial. \url{https://www.jetbrains.com/lp/compose-multiplatform/}\bibitem{spring} Spring, ``Spring Boot,'' documentación oficial. \url{https://spring.io/projects/spring-boot}\bibitem{mongo} MongoDB, ``MongoDB Documentation.'' \url{https://www.mongodb.com/docs/}\bibitem{minio} MinIO, documentación del almacenamiento de objetos. \url{https://min.io/}\end{thebibliography}
+\end{frame}
+\begin{frame}{Referencias técnicas (2/2)}
+\footnotesize\begin{thebibliography}{9}\bibitem{hf} Hugging Face, ``Transformers Documentation.'' \url{https://huggingface.co/docs/transformers/}\bibitem{kaggle} Kaggle, ``Datasets.'' \url{https://www.kaggle.com/datasets}\bibitem{flutter} Flutter, documentación oficial. \url{https://docs.flutter.dev/}\bibitem{rn} React Native, documentación oficial. \url{https://reactnative.dev/}\bibitem{maui} Microsoft, ``.NET MAUI,'' documentación oficial. \url{https://learn.microsoft.com/dotnet/maui/}\bibitem{scrum} K. Schwaber y J. Sutherland, ``The Scrum Guide,'' 2020. \url{https://scrumguides.org/}\end{thebibliography}
+\end{frame}
+\begin{frame}[plain]\begin{center}\vspace{2cm}{\Huge\bfseries\color{NahuaGreen}Gracias}\vspace{.5cm}\par{\Large\color{NahuaDark}¿Preguntas?}\vspace{1cm}\small\color{NahuaGray}Seminario I · Instituto Tecnológico de Orizaba\end{center}\end{frame}
+\end{document}

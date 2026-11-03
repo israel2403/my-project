@@ -1,0 +1,15 @@
+Analizar las tecnologías de información y comunicación aplicables al desarrollo de una plataforma móvil para la construcción y enriquecimiento de un corpus paralelo náhuatl–español.
+Analizar los métodos, técnicas y recursos lingüísticos utilizados para la recopilación, organización, transcripción y gestión de datos de corpus en lenguas de bajos recursos.
+Redactar el capítulo 1 de la tesis.
+Redactar el capítulo 2 de la tesis.
+Diseñar un prototipo no funcional de la aplicación móvil, considerando los principios de usabilidad, accesibilidad y experiencia de usuario para la recopilación y clasificación de registros de audio.
+Redactar el capítulo 3 de la tesis.
+Diseñar la arquitectura y los servicios necesarios para la recopilación, almacenamiento, organización, sincronización y gestión de los registros de audio y sus metadatos asociados.
+Desarrollar la aplicación móvil multiplataforma para la recopilación, clasificación y gestión de registros de audio destinados a la construcción y enriquecimiento del corpus paralelo náhuatl–español.
+Redactar el capítulo 4 de la tesis.
+Realizar la estancia académica.
+Redactar el capítulo 5 de la tesis.
+Efectuar las correcciones necesarias en la redacción y documentación de la tesis.
+Evaluar el funcionamiento de la plataforma mediante casos de estudio como prueba de concepto, considerando la recopilación, organización y gestión de los registros de audio destinados al corpus paralelo náhuatl–español.
+Presentar el examen TOEFL.
+Realizar el examen de grado.
